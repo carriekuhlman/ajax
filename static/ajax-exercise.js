@@ -1,0 +1,60 @@
+"use strict";
+
+
+// PART 1: SHOW A FORTUNE
+
+function showFortune(evt) {
+
+    $.get('/fortune',(res) => {
+        $('#fortune-text').text(res);
+            });
+        
+}
+
+$('#get-fortune-button').on('click', showFortune);
+
+
+
+
+
+// PART 2: SHOW WEATHER
+
+function showWeather(evt) {
+    evt.preventDefault();
+
+    let url = "/weather.json";
+    let formData = {"zipcode": $("#zipcode-field").val()};
+
+    // TODO: request weather with that URL and show the forecast in #weather-info
+    $.get('/weather.json', formData, (res) => {
+        $('#weather-info').text(res.forecast);
+            });
+}
+
+$("#weather-form").on('submit', showWeather);
+
+
+
+
+// PART 3: ORDER MELONS
+
+function orderMelons(evt) {
+    evt.preventDefault();
+
+    const formInputs = {
+        'code': $('').val(),
+        'msg': $('').val()
+    };
+
+
+    $.post('/order-melons.json',(res) => {
+        
+    })
+    
+    // TODO: show the result message after your form
+    // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
+}
+
+$("#order-form").on('submit', orderMelons);
+
+
